@@ -111,6 +111,18 @@ app.get("/api/balance-history", (req, res) => {
   res.json(curveLineData);
 });
 
+const creditCardData = {
+  cardNumber: "3778 **** **** 1234",
+  expiry: "12/22",
+  balance: 5756,
+  cardHolder: "Eddy Cusuma",
+  color: "black",
+};
+
+// API route to get the credit card data
+app.get('/api/credit-card', (req, res) => {
+  res.json(creditCardData);
+});
 
 // Start the server
 const PORT = process.env.PORT || 3000;
