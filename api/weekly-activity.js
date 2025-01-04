@@ -1,12 +1,12 @@
-import express from 'express';
-import cors from 'cors'; // Import the cors package
+import express from "express";
+import cors from "cors"; // Import the cors package
 
 const app = express();
 
 // Enable CORS for all routes
 app.use(cors());
 
-app.get('/api/weekly-activity', async (req, res) => {
+app.get("/api/weekly-activity", async (req, res) => {
   const randomHeights = [30, 60, 40, 70, 30, 50, 60].map((height) => ({
     deposit: height,
     withdraw: Math.floor(Math.random() * 100),
@@ -72,11 +72,11 @@ app.get("/api/transactions", (req, res) => {
 });
 
 const expenseData = {
-  labels: ['Entertainment', 'Bill Expense', 'Investment', 'Others'],
+  labels: ["Entertainment", "Bill Expense", "Investment", "Others"],
   datasets: [
     {
       data: [30, 15, 20, 35],
-      backgroundColor: ['#2A3267', '#FF7518', '#4169E1', '#1C1C1C'],
+      backgroundColor: ["#2A3267", "#FF7518", "#4169E1", "#1C1C1C"],
       hoverOffset: 30,
     },
   ],
@@ -111,16 +111,25 @@ app.get("/api/balance-history", (req, res) => {
   res.json(curveLineData);
 });
 
-const creditCardData = {
-  cardNumber: "3778 **** **** 1234",
-  expiry: "12/22",
-  balance: 5756,
-  cardHolder: "Eddy Cusuma",
-  color: "black",
-};
+const creditCardData = [
+  {
+    cardNumber: "3778 **** **** 1234",
+    expiry: "12/22",
+    balance: 5756,
+    cardHolder: "Eddy Cusuma",
+    color: "black",
+  },
+  {
+    cardNumber: "3778 **** **** 1234",
+    expiry: "12/22",
+    balance: 5756,
+    cardHolder: "Eddy Cusuma",
+    color: "white",
+  },
+];
 
 // API route to get the credit card data
-app.get('/api/credit-card', (req, res) => {
+app.get("/api/credit-card", (req, res) => {
   res.json(creditCardData);
 });
 
