@@ -8,7 +8,7 @@ const PORT = 80;
 app.use(cors());
 
 // Mock API for weekly activity data
-app.get("/api/weekly-activity", (req, res) => {
+app.get("/weekly-activity", (req, res) => {
   const randomHeights = [30, 60, 40, 70, 30, 50, 60].map((height) => ({
     deposit: height,
     withdraw: Math.floor(Math.random() * 100),
