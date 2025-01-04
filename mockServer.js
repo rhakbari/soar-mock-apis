@@ -3,7 +3,7 @@ const { createServer } = require("http");
 const cors = require("cors");
 
 const app = express();
-const PORT = 8080;
+const PORT = 80;
 
 app.use(cors());
 
@@ -36,6 +36,14 @@ app.get("/api/weekly-activity", (req, res) => {
         borderSkipped: false,
       },
     ],
+  };
+
+  res.json(response);
+});
+
+app.get("/", (req, res) => {
+  const response = {
+    message: "hello world",
   };
 
   res.json(response);
