@@ -1,16 +1,9 @@
 // api/weekly-activity.js
-export default function handler(req, res) {
-  if (req.method !== 'GET') {
-    res.setHeader('Allow', ['GET']);
-    res.status(405).json({ message: `Method ${req.method} is not allowed` });
-    return;
-  }
+export const config = {
+  runtime: 'edge'
+};
 
-  // Enable CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
+export default async function handler(request) {
   const randomHeights = [30, 60, 40, 70, 30, 50, 60].map((height) => ({
     deposit: height,
     withdraw: Math.floor(Math.random() * 100),
@@ -40,5 +33,13 @@ export default function handler(req, res) {
     ],
   };
 
-  res.status(200).json(response);
+  return new Response(JSON.stringify(response), {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type'
+    },
+  });
 }
