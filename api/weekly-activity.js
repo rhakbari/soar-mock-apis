@@ -1,6 +1,10 @@
 import express from 'express';
+import cors from 'cors'; // Import the cors package
 
 const app = express();
+
+// Enable CORS for all routes
+app.use(cors());
 
 app.get('/api/weekly-activity', async (req, res) => {
   const randomHeights = [30, 60, 40, 70, 30, 50, 60].map((height) => ({
