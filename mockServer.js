@@ -1,4 +1,5 @@
 const express = require("express");
+const { createServer } = require("http");
 const cors = require("cors");
 
 const app = express();
@@ -44,3 +45,8 @@ app.get("/api/weekly-activity", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Mock API server running at http://localhost:${PORT}`);
 });
+
+module.exports = (req, res) => {
+  const server = createServer(app);
+  server.emit("request", req, res);
+};
