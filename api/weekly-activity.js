@@ -1,9 +1,8 @@
-// api/weekly-activity.js
-export const config = {
-  runtime: 'edge'
-};
+import express from 'express';
 
-export default async function handler(request) {
+const app = express();
+
+app.get('/api/weekly-activity', async (req, res) => {
   const randomHeights = [30, 60, 40, 70, 30, 50, 60].map((height) => ({
     deposit: height,
     withdraw: Math.floor(Math.random() * 100),
@@ -33,13 +32,9 @@ export default async function handler(request) {
     ],
   };
 
-  return new Response(JSON.stringify(response), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type'
-    },
-  });
-}
+  res.json(response);
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
