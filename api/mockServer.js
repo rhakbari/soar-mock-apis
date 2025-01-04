@@ -1,16 +1,27 @@
-// api/index.js
 const express = require("express");
 const app = express();
 
-// Enable CORS for all routes
+// Enable CORS
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
 
-// Mock API for weekly activity data
-app.get("/api/weekly-activity", (req, res) => {
+// Basic logging middleware
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+  next();
+});
+
+// Root path handler
+app.get("/", (req, res) => {
+  res.json({ message: "API is running" });
+});
+
+// Weekly activity endpoint
+app.get(["/weekly-activity", "/api/weekly-activity"], (req, res) => {
   const randomHeights = [30, 60, 40, 70, 30, 50, 60].map((height) => ({
     deposit: height,
     withdraw: Math.floor(Math.random() * 100),
@@ -43,9 +54,9 @@ app.get("/api/weekly-activity", (req, res) => {
   res.json(response);
 });
 
-// Health check endpoint
-app.get("/api/health", (req, res) => {
-  res.json({ status: "healthy" });
+// Catch-all handler for undefined routes
+app.use((req, res) => {
+  res.status(404).json({ error: `Cannot ${req.method} ${req.path}` });
 });
 
 module.exports = app;
