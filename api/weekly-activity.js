@@ -71,6 +71,46 @@ app.get("/api/transactions", (req, res) => {
   res.json(transactions);
 });
 
+const expenseData = {
+  labels: ['Entertainment', 'Bill Expense', 'Investment', 'Others'],
+  datasets: [
+    {
+      data: [30, 15, 20, 35],
+      backgroundColor: ['#2A3267', '#FF7518', '#4169E1', '#1C1C1C'],
+      hoverOffset: 30,
+    },
+  ],
+};
+
+// API route to get the expense chart data
+app.get("/api/expense-data", (req, res) => {
+  res.json(expenseData);
+});
+
+const curveLineData = {
+  labels: ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan"],
+  datasets: [
+    {
+      label: "Balance",
+      data: [0, 190, 300, 500, 440, 800, 600, 550],
+      fill: true,
+      tension: 0.4,
+      borderColor: "#1814F3",
+      backgroundColor: "rgba(24, 20, 243, 0.2)",
+      shadowColor: "rgba(24, 20, 243, 0.5)",
+      shadowBlur: 10,
+      shadowOffsetX: 2,
+      shadowOffsetY: 5,
+      borderWidth: 4,
+    },
+  ],
+};
+
+// API route to get the curve line chart data
+app.get("/api/balance-history", (req, res) => {
+  res.json(curveLineData);
+});
+
 
 // Start the server
 const PORT = process.env.PORT || 3000;
