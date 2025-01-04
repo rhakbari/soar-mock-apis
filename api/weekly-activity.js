@@ -39,6 +39,39 @@ app.get('/api/weekly-activity', async (req, res) => {
   res.json(response);
 });
 
+const transactions = [
+  {
+    id: 1,
+    name: "Deposit from my Card",
+    date: "28 January 2021",
+    amount: -850,
+    icon: "/icons/recentTransaction/creditcards_icon.svg",
+    bgColor: "bg-orange-50",
+  },
+  {
+    id: 2,
+    name: "Deposit Paypal",
+    date: "25 January 2021",
+    amount: 2500,
+    icon: "/icons/recentTransaction/ipaypal_icon.svg",
+    bgColor: "bg-blue-50",
+  },
+  {
+    id: 3,
+    name: "Jemi Wilson",
+    date: "21 January 2021",
+    amount: 5400,
+    icon: "/icons/recentTransaction/dollar_icon.svg",
+    bgColor: "bg-cyan-50",
+  },
+];
+
+// API route to get transactions
+app.get("/api/transactions", (req, res) => {
+  res.json(transactions);
+});
+
+
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
