@@ -1,7 +1,5 @@
 {
   "name": "soar-mock-apis",
   "version": "1.0.0",
-  "private": true,
-  "main": "api/weekly-activity.js",
-  "dependencies": {}
+  "private": true
 }
